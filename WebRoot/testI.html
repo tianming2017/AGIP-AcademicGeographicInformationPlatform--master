@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>mytest</title>
+<script src="./plugin/jquery-3.2.1.min.js"></script>
+<script>
+var testdata = [{id:1,name:"map1"},{id:2,name:"map2"},{id:3,name:"map3"},{id:4,name:"map4"},{id:5,name:"map5"},{id:6,name:"map6"}];
+
+function showMap(){
+	for(maps in testdata){
+		var mapid = testdata[maps].id;
+		var mapname = testdata[maps].name;
+		//var i = parseInt(maps)+1;
+		var divid = "tri" + (parseInt(maps)+1);
+		$("#"+divid).children("a").attr("href","#1")
+		
+	}	
+}
+$(function(){
+	showMap();
+})
+</script>
+</head>
+<body>
+
+</body>
+</html>
