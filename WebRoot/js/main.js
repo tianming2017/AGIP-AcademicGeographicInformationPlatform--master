@@ -434,6 +434,50 @@ function addLayerToMap()
     $("#layerPanel").window('close');
     redraw();
 }
+
+// menu item tips by hhx
+function tips(x,y,tip){
+	$("#menuItemToolTip").html(tip);
+	$("#menuItemToolTip").css("top", y + "px");
+	$("#menuItemToolTip").css("left", x + "px");
+	$("#menuItemToolTip").css("display", "inline");
+}
+
+
+function MenuItemBtnToolTip(){
+	//获取按钮中心店，向右偏移10px,向下偏移51px(因为headInterval高度为51px,且tip放在body之下)
+	$("#btnLayer").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10 , obj.offsetTop + obj.offsetHeight / 2 + 51,'layer');
+	});
+	$("#btnMap").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10, obj.offsetTop + obj.offsetHeight / 2 + 51,'map');
+	});
+	$("#btnCapture").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10, obj.offsetTop + obj.offsetHeight / 2 + 51,'capture');	
+	});
+	$("#btnShare").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10, obj.offsetTop + obj.offsetHeight / 2 + 51,'share');		
+	});
+	$("#btnMeasure").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10, obj.offsetTop + obj.offsetHeight / 2 + 51,'measure');		
+	});
+	$("#btnSave").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10, obj.offsetTop + obj.offsetHeight / 2 + 51,'save');		
+	});
+	$("#btnSearch").mouseover(function(e){
+		var obj = $(this)[0];
+		tips(obj.offsetLeft + obj.offsetWidth / 2 + 10, obj.offsetTop + obj.offsetHeight / 2 + 51,'search');		
+	});
+	$(".menuItemBtn").mouseout(function(){
+		$("#menuItemToolTip").css('display','none');
+	})
+}
 	
 //页面初始化
 $(document).ready(function () {
@@ -441,5 +485,6 @@ $(document).ready(function () {
 	getLayerData();//获取图层数据（这里要重写（这里的具体代码见layerpanel.js
 	yukiInit();//初始化（这里的代码见yukimap）
 	createAutoComplete();//建立查询数据组（这里的代码见AttrSearch
-	
+	CaptureInit();//初始化截图插件
+	MenuItemBtnToolTip();//menuItem 的 tooltip
 });
