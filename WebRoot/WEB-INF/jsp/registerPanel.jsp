@@ -34,7 +34,7 @@
     <label class="mylabel">所在单位</label>
     <input id="comp" name="comp" class="easyui-textbox" data-options="required:true,missingMessage:'所在单位不可为空'" style="width:200px;height:30px" /><span id="cpinfo" class="info"></span><br/><br/>
     <label class="mylabel">证件类型</label>
-    <input id="credifitype" name="credifitype" style="width:200px;height:30px" /><span id="cretinfo" class="info"></span><br/><br/>
+    <input id="cretifitype" name="cretifitype" style="width:200px;height:30px" /><span id="cretinfo" class="info"></span><br/><br/>
     <label class="mylabel">证件号码</label>
     <input id="cretificate" name="cretificate" class="easyui-textbox" data-options="required:true,missingMessage:'证件号码不可为空'" style="width:200px;height:30px" /><span id="creinfo" class="info"></span><br/><br/>
     

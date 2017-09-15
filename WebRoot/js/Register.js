@@ -143,7 +143,7 @@ $(document).ready(function () {
 	});
 	
 
-	$("#credifitype").combobox(
+	$("#cretifitype").combobox(
 		{
     		valueField:'id',
     		textField:'text',
@@ -164,6 +164,8 @@ $(document).ready(function () {
 			
 		}
 	);
+	$("#cretifitype").combobox('select',0);
+	
 	
 	//发邮件	
 	$("#sendcode2email").click(function () {
@@ -232,7 +234,7 @@ $(document).ready(function () {
 					cretificate:$('#cretificate').val().trim(),
 					realname:$('#realname').val().trim(),
 					comp:$('#comp').val().trim(),
-					credifitype:$('#credifitype').val().trim(),
+					cretifitype:$('#cretifitype').combobox('getValue').trim(),
 				},
 				success: function (row) {
 					if (row == 1) {

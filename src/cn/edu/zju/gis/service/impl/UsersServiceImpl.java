@@ -112,11 +112,9 @@ public class UsersServiceImpl implements UsersService{
 	public void sendcode2email(Users user, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		// TODO Auto-generated method stub
-		//EmailSender emailsender=new EmailSender("ab78000");
-		
+		//EmailSender emailsender=new EmailSender("ab78000");		
 		String checkcode=generate_yzm(4);
-		
-		
+
 		Date date = new Date();
 		Timestamp timestampnow_ = new Timestamp(date.getTime());
 		String email2send=request.getParameter("email");		
@@ -137,6 +135,28 @@ public class UsersServiceImpl implements UsersService{
 		
 		response.getWriter().append("验证码已发送至"+email2send);
 	}
+	
+	@Override
+	public void sendcode2email2(String email2send, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");		
+		//EmailSender emailsender=new EmailSender("ab78000");		
+		String checkcode=generate_yzm(4);		
+		
+		Date date = new Date();
+		Timestamp timestampnow_ = new Timestamp(date.getTime());
+		long timestampnow=timestampnow_.getTime();
+		//emailsender.sendemail2address(email2send,checkcode);
+		
+		email_checkcode ec=new email_checkcode();
+		ec.setEmail(email2send);
+		ec.setCheckcode(checkcode);
+		ec.setCreatetime(timestampnow);
+		usersMapper.checkcodeemail_deleteduplicate(ec);//如果有重复就删掉（相当于更新）
+		usersMapper.insert_emailcheckcode(ec);
+		
+		EmailSender es = new EmailSender("zjugis2014","zjugis2014");//这里是特地申请的163邮箱
+		es.sendemail2address(email2send, checkcode);
+	}	
 	
 	@Override
 	public boolean emailExists(String email) {
@@ -208,25 +228,6 @@ public class UsersServiceImpl implements UsersService{
 			response.getWriter().print("fail");
 		}
 		
-	}
-	
-	@Override
-	public void sendcode2email2(String email2send, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=UTF-8");		
-		//EmailSender emailsender=new EmailSender("ab78000");		
-		String checkcode=generate_yzm(4);		
-		
-		Date date = new Date();
-		Timestamp timestampnow_ = new Timestamp(date.getTime());
-		long timestampnow=timestampnow_.getTime();
-		//emailsender.sendemail2address(email2send,checkcode);
-		
-		email_checkcode ec=new email_checkcode();
-		ec.setEmail(email2send);
-		ec.setCheckcode(checkcode);
-		ec.setCreatetime(timestampnow);
-		usersMapper.checkcodeemail_deleteduplicate(ec);//如果有重复就删掉（相当于更新）
-		usersMapper.insert_emailcheckcode(ec);
 	}
 
 	@Override
